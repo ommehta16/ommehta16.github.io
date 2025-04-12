@@ -1,0 +1,10 @@
+:root {
+    --weight: 100;
+    --wdth: 100;
+}
+
+body {
+    font-family: "Open Sans";
+    font-weight: var(--weight);
+    font-style: normal;
+}
