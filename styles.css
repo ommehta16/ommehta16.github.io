@@ -1,5 +1,6 @@
 :root {
     --bg-col: #000b1a;
+    --img-blur-rad: 0;
     background: var(--bg-col);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -128,6 +129,28 @@ h3 {
     height: calc(min(70vmin, 90vh - 12em));
     border-radius: 35vmin;
     box-shadow: 0px 0px 30px #ffffffaa;
+    transition: background 1s, all 0.2s;
+    filter: blur(var(--img-blur-rad));
+}
+
+.blurred {
+    --img-blur-rad: 1.5rem;
+}
+
+#img-container.self1 {
+    background: center/cover no-repeat url("selfie/1.jpeg");
+}
+
+#img-container.self2 {
+    background: center/cover no-repeat url("selfie/2.jpeg");
+}
+
+#img-container.self3 {
+    background: center/cover no-repeat url("selfie/3.jpeg");
+}
+
+#img-container.self4 {
+    background: center/cover no-repeat url("selfie/4.jpeg");
 }
 
 #socials {

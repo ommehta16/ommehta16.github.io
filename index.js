@@ -20,7 +20,7 @@ const addFlavorText = () => {
         `a "studious" student suspiciously standing still`,
         `(spook)`,
         `a D1 procrastinator and mediocre achiever`,
-        `a <i>very</i> cooked junior who decided to take 9 APs (😭)</p>`,
+        `a <i>very</i> cooked junior who decided to take 9 APs (😭)`,
     ];
     const curr = Math.floor(Math.random() * flavorOptions.length);
     if (flavorOptions[curr][0] == "(") document.getElementById("gramer").innerText = "";
@@ -55,3 +55,21 @@ addEventListener("DOMContentLoaded", () => {
         document.body.style.opacity = 1;
     }, 100);
 });
+
+let selfieID = 0;
+
+document.getElementById("img-container").addEventListener("mousedown", () => {
+    document.getElementById("img-container").className = "self" + (selfieID + 1) + " blurred";
+    selfieID = (selfieID + 1) % 4;
+});
+
+const changePFP = () => {
+    if (document.getElementById("img-container").className == "self" + (selfieID + 1)) return;
+    document.getElementById("img-container").className = "self" + (selfieID + 1) + " blurred";
+    setTimeout(() => {
+        document.getElementById("img-container").className = "self" + (selfieID + 1);
+    }, 100)
+}
+
+document.getElementById("img-container").addEventListener("mouseup", changePFP)
+document.getElementById("img-container").addEventListener("mouseleave", changePFP)
