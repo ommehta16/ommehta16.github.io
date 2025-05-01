@@ -19,7 +19,7 @@ body {
 }
 
 footer {
-    padding: 1rem 2rem;
+    padding: 1em 2em;
     background: #001129;
     color: #bababa;
     justify-content: space-between;
@@ -35,7 +35,7 @@ h1.massive {
 }
 
 #flavortext {
-    margin-top: 0.5rem;
+    margin-top: 0.5em;
     font-weight: 400;
     font-size: 1.5em;
 }
@@ -66,7 +66,7 @@ h1.massive {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.5em;
 }
 
 .accent {
@@ -74,7 +74,7 @@ h1 {
 }
 
 h2 {
-    font-size: 2.5rem;
+    font-size: 2.5em;
     background: radial-gradient(circle, #39c699 30%, #2e9c9e 100%);
     background-clip: text;
 }
@@ -88,7 +88,7 @@ h3 {
 }
 
 .page {
-    padding: 2rem 2rem;
+    padding: 2em 2em;
 }
 
 .bento-outer {
@@ -111,7 +111,7 @@ h3 {
 }
 
 #top {
-    padding: 2rem;
+    padding: 2em;
     min-height: calc(100vh - 6em);
     justify-content: center;
     align-items: center;
@@ -122,16 +122,16 @@ h3 {
 
 #img-container {
     background: center/cover no-repeat url("selfie/1.jpeg");
-    min-width: calc(min(70vmin, 80vmin - 10rem));
-    min-height: calc(min(70vmin, 80vmin - 10rem));
-    width: calc(min(70vmin, 100vmin - 20rem));
-    height: calc(min(70vmin, 100vmin - 20rem));
+    min-width: calc(min(70vmin, 90vh - 12em));
+    min-height: calc(min(70vmin, 90vh - 12em));
+    width: calc(min(70vmin, 90vh - 12em));
+    height: calc(min(70vmin, 90vh - 12em));
     border-radius: 35vmin;
     box-shadow: 0px 0px 30px #ffffffaa;
 }
 
 #socials {
-    font-size: 1.1rem;
+    font-size: 1.1em;
     justify-content: space-evenly;
 }
 
@@ -152,24 +152,24 @@ br {
 }
 
 #projects-box {
-    margin-bottom: 4rem;
+    margin-bottom: 4em;
 }
 
 
 /* GENERIC LAYOUT STUFF */
 .flex {
     display: flex;
-    gap: 1rem;
+    gap: 1em;
 }
 
 .flex.row {
     flex-direction: row;
-    gap: 1rem;
+    gap: 1em;
 }
 
 .flex.col {
     flex-direction: column;
-    gap: 1rem;
+    gap: 1em;
 }
 
 .flex.wrap {
@@ -178,5 +178,5 @@ br {
 
 .grid {
     display: grid;
-    gap: 1rem;
+    gap: 1em;
 }
