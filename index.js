@@ -15,18 +15,18 @@ const addFiller = () => {
 const flavorBox = document.getElementById("flavortext");
 const addFlavorText = () => {
     const flavorOptions = [
-        `"a motivated junior who's interested in CS"`,
+        `"a motivated junior who's interested in Computer Science"`,
         `a fellow human!`,
         `a "studious" student suspiciously standing still`,
-        `[spook]`,
-        `(why's he in so many clubs)`,
+        `(spook)`,
+        `a D1 procrastinator and mediocre achiever`,
         `a <i>very</i> cooked junior who decided to take 9 APs (😭)</p>`,
     ];
     const curr = Math.floor(Math.random() * flavorOptions.length);
     if (flavorOptions[curr][0] == "(") document.getElementById("gramer").innerText = "";
     else document.getElementById("gramer").innerText = ",";
 
-    if (flavorOptions[curr] == "[spook]") {
+    if (flavorOptions[curr] == "(spook)") {
         spook();
         return;
     }
