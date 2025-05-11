@@ -4,10 +4,16 @@
     --adj: calc(max(1rem, 2vh));
     background: var(--bg-col);
     font-family: sans-serif;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-image: radial-gradient(circle, #0b1b31 0%, var(--bg-col) 100%);
+    background-repeat: no-repeat;
 }
 
 * {
-    transition: all 0.2s;
+    transition: all 0.2s, opacity 1s;
 }
 
 body {
@@ -15,9 +21,10 @@ body {
     margin: 0;
     font-family: "Raleway";
     font-size: var(--adj);
-    background: radial-gradient(circle, #001129 0%, var(--bg-col) 100%);
+    /* background: radial-gradient(circle, #001129 0%, var(--bg-col) 100%); */
     transition: transform 1s,
         opacity 2s;
+    overflow-x: hidden;
 }
 
 footer {
@@ -91,6 +98,53 @@ h3 {
     padding: 2em 2em;
 }
 
+#top {
+    padding: 2em;
+    min-height: calc(100vh - 6em);
+    justify-content: center;
+    align-items: center;
+    gap: 4em;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+#img-container {
+    background: center/cover no-repeat url("static/selfie/1.jpeg");
+    min-width: calc(min(70vmin, 90vh - 12em));
+    min-height: calc(min(70vmin, 90vh - 12em));
+    width: calc(min(70vmin, 90vh - 12em));
+    height: calc(min(70vmin, 90vh - 12em));
+    border-radius: 35vmin;
+    box-shadow: 0px 0px 30px #ffffffaa;
+    transition: background 1s, all 0.2s;
+    filter: blur(var(--img-blur-rad));
+}
+
+.blurred {
+    --img-blur-rad: 0.5rem;
+}
+
+#img-container.self1 {
+    background: center/cover no-repeat url("static/selfie/1.jpeg");
+}
+
+#img-container.self2 {
+    background: center/cover no-repeat url("static/selfie/2.jpeg");
+}
+
+#img-container.self3 {
+    background: center/cover no-repeat url("static/selfie/3.jpeg");
+}
+
+#img-container.self4 {
+    background: center/cover no-repeat url("static/selfie/4.jpeg");
+}
+
+#socials {
+    font-size: 1.1em;
+    justify-content: space-evenly;
+}
+
 .bento-outer {
     justify-content: center;
 }
@@ -110,57 +164,65 @@ h3 {
     box-shadow: 0 0 2em 0.7em rgba(250, 250, 250, 0.15);
 }
 
-#top {
-    padding: 2em;
-    min-height: calc(100vh - 6em);
-    justify-content: center;
-    align-items: center;
-    gap: 4em;
-    flex-wrap: wrap;
-    align-content: center;
+#projects-box {
+    margin-bottom: 4em;
 }
 
-#img-container {
-    background: center/cover no-repeat url("selfie/1.jpeg");
-    min-width: calc(min(70vmin, 90vh - 12em));
-    min-height: calc(min(70vmin, 90vh - 12em));
-    width: calc(min(70vmin, 90vh - 12em));
-    height: calc(min(70vmin, 90vh - 12em));
-    border-radius: 35vmin;
-    box-shadow: 0px 0px 30px #ffffffaa;
-    transition: background 1s, all 0.2s;
-    filter: blur(var(--img-blur-rad));
+.timeline {
+    display: flex;
+    gap: 1rem;
 }
 
-.blurred {
-    --img-blur-rad: 0.5rem;
+.timeline-interior {
+    display: flex;
+    flex-direction: column;
 }
 
-#img-container.self1 {
-    background: center/cover no-repeat url("selfie/1.jpeg");
+.timeline-vertical {
+    width: 0.25rem;
+    background-color: rgb(186, 186, 186);
+    display: block;
+    border-radius: 1rem;
+    z-index: 4;
 }
 
-#img-container.self2 {
-    background: center/cover no-repeat url("selfie/2.jpeg");
+.timeline-interior>li {
+    list-style: none;
+    max-width: 80ch;
+    background-color: rgba(58, 58, 58, 0.354);
+    background-image: url("static/noise3.png");
+    background-blend-mode: multiply;
+    backdrop-filter: blur(1rem);
+    border-radius: 1rem;
+    display: block;
+    padding: 1rem;
+    margin: 1rem 0;
 }
 
-#img-container.self3 {
-    background: center/cover no-repeat url("selfie/3.jpeg");
+.timeline-interior>li>h3::before {
+    content: "";
+    width: 1.75rem;
+    height: 0.25rem;
+    background-color: rgb(186, 186, 186);
+    display: block;
+    position: absolute;
+    margin-left: -1.75em;
+    margin-top: 0.5em;
+    border-radius: 0.125rem;
 }
 
-#img-container.self4 {
-    background: center/cover no-repeat url("selfie/4.jpeg");
+.timeline-interior>li>p {
+    line-height: 1.6;
 }
 
-#socials {
-    font-size: 1.1em;
-    justify-content: space-evenly;
+#socials>a {
+    font-size: 1.5em;
 }
 
 a {
     color: #5389fd;
     text-decoration: none;
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
 }
 
 a:hover {
@@ -171,10 +233,6 @@ a:hover {
 br {
     display: block;
     min-height: 100px;
-}
-
-#projects-box {
-    margin-bottom: 4em;
 }
 
 
