@@ -49,13 +49,6 @@ const spook = () => {
 addFiller();
 addFlavorText();
 
-addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-        document.body.style.transform = "translate(0px,0px)";
-        document.body.style.opacity = 1;
-    }, 100);
-});
-
 let selfieID = 0;
 
 document.getElementById("img-container").addEventListener("mousedown", () => {
@@ -73,3 +66,5 @@ const changePFP = () => {
 
 document.getElementById("img-container").addEventListener("mouseup", changePFP)
 document.getElementById("img-container").addEventListener("mouseleave", changePFP)
+
+document.addEventListener("DOMContentLoaded", () => { setTimeout(() => document.body.classList.add("show"), 100) });
