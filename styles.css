@@ -296,6 +296,10 @@ h3 {
     background-image: url("static/projects/powerschool.png");
 }
 
+.bento-outer>li>div.physics {
+    background-image: url("static/projects/physics.png");
+}
+
 .bento-outer>li>div.construction {
     background-image: url("static/projects/construction.png");
 }
