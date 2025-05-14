@@ -68,3 +68,30 @@ document.getElementById("img-container").addEventListener("mouseup", changePFP)
 document.getElementById("img-container").addEventListener("mouseleave", changePFP)
 
 document.addEventListener("DOMContentLoaded", () => { setTimeout(() => document.body.classList.add("show"), 100) });
+
+
+const infoBox = document.getElementById("info-box");
+
+
+/** 
+ * @param {string} name 
+ * @param {HTMLElement} el
+*/
+const changeInfoContent = (name, el) => {
+    for (const tmp of ["crc", "cpt", "bsa", "winners", "esp"]) infoBox.classList.remove(tmp);
+    const active = el.getAttribute("selected");
+    document.querySelectorAll("li.info-show").forEach(el => el.removeAttribute("selected"))
+    console.log(active);
+    if (active == null) {
+        el.setAttribute("selected", "");
+        infoBox.classList.add(name);
+    }
+}
+
+const infoShows = document.getElementsByClassName("info-show");
+for (const el of infoShows) {
+    const name = el.getAttribute("name");
+    el.addEventListener("click", () => {
+        changeInfoContent(name, el);
+    });
+}
