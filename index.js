@@ -12,6 +12,7 @@ const addFiller = () => {
     }
 }
 
+let selfieID = 0;
 const flavorBox = document.getElementById("flavortext");
 const addFlavorText = () => {
     const flavorOptions = [
@@ -21,6 +22,7 @@ const addFlavorText = () => {
         `(spook)`,
         `a D1 procrastinator and mediocre achiever`,
         `a <i>very</i> cooked junior who decided to take 9 APs (😭)`,
+        `(it's <i>so over</i>)`,
     ];
     const curr = Math.floor(Math.random() * flavorOptions.length);
     if (flavorOptions[curr][0] == "(") document.getElementById("gramer").innerText = "";
@@ -31,6 +33,9 @@ const addFlavorText = () => {
         return;
     }
     flavorBox.innerHTML = flavorOptions[curr];
+
+    selfieID = Math.floor(Math.random() * 4.0);
+    document.getElementById("img-container").className = "self" + (selfieID + 1);
 }
 
 const spook = () => {
@@ -49,7 +54,6 @@ const spook = () => {
 addFiller();
 addFlavorText();
 
-let selfieID = 0;
 
 document.getElementById("img-container").addEventListener("mousedown", () => {
     document.getElementById("img-container").className = "self" + (selfieID + 1) + " blurred";

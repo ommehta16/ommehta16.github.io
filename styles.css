@@ -184,17 +184,6 @@ h3 {
     justify-content: center;
 }
 
-.bento-outer>li {
-    list-style: none;
-    border-style: solid;
-    background: var(--bg-col);
-    padding: 1em;
-    width: calc(min(18em, 100%));
-    height: 20em;
-    flex-shrink: 0.25;
-    transition: all 0.5s;
-}
-
 .bento-outer>li:hover {
     box-shadow: 0 0 2em 0.7em rgba(250, 250, 250, 0.15);
 }
@@ -249,6 +238,66 @@ h3 {
     margin-left: -1.85em;
     margin-top: 0.5em;
     border-radius: 0.125rem;
+}
+
+
+.bento-outer>li {
+    list-style: none;
+    background: var(--bg-col);
+    padding: 1em;
+    width: calc(min(18em, 100%));
+    height: 20em;
+    flex-shrink: 0.25;
+    transition: all 0.5s;
+    margin: 0;
+
+    background-color: rgba(58, 58, 58, 0.354);
+    background-image: url("static/noise3.png");
+    /* for the grain effect ^^^ */
+    background-blend-mode: multiply;
+    border-radius: 1rem;
+    display: block;
+    padding: 1rem;
+    border-style: solid;
+    border-width: 0.05rem;
+    border-color: #ffffffaa;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+.bento-outer>li>p {
+    margin: 0;
+}
+
+.bento-outer>li>div {
+    flex-grow: 1;
+    background-color: red;
+    border-radius: 0.75rem;
+    background-position: center;
+    background-size: cover;
+}
+
+.bento-outer>li>div.this-site {
+    background-image: url("static/projects/this.png");
+}
+
+.bento-outer>li>div.wide {
+    background-image: url("static/projects/wide.png");
+}
+
+.bento-outer>li>div.cpt-img {
+    background-image: url("static/projects/cpt.png");
+}
+
+.bento-outer>li>div.powerschool {
+    background-image: url("static/projects/powerschool.png");
+}
+
+.bento-outer>li>div.construction {
+    background-image: url("static/projects/construction.png");
 }
 
 @media screen and (min-width:725px) {
@@ -348,4 +397,12 @@ div.bsa {
     #info-box {
         display: none;
     }
+
+    .bento-outer>li>div {
+        height: 15rem;
+    }
+}
+
+.bento-outer>li>h3>a {
+    color: white;
 }
