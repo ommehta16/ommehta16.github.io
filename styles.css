@@ -274,34 +274,33 @@ h3 {
 
 .bento-outer>li>div {
     flex-grow: 1;
-    background-color: red;
     border-radius: 0.75rem;
     background-position: center;
     background-size: cover;
 }
 
 .bento-outer>li>div.this-site {
-    background-image: url("static/projects/this.png");
+    background-image: url("static/projects/this.jpg");
 }
 
 .bento-outer>li>div.wide {
-    background-image: url("static/projects/wide.png");
+    background-image: url("static/projects/wide.jpg");
 }
 
 .bento-outer>li>div.cpt-img {
-    background-image: url("static/projects/cpt.png");
+    background-image: url("static/projects/cpt.jpg");
 }
 
 .bento-outer>li>div.powerschool {
-    background-image: url("static/projects/powerschool.png");
+    background-image: url("static/projects/powerschool.jpg");
 }
 
 .bento-outer>li>div.physics {
-    background-image: url("static/projects/physics.png");
+    background-image: url("static/projects/physics.jpg");
 }
 
 .bento-outer>li>div.construction {
-    background-image: url("static/projects/construction.png");
+    background-image: url("static/projects/construction.jpg");
 }
 
 @media screen and (min-width:725px) {
@@ -356,7 +355,7 @@ div.bsa {
 }
 
 div.cpt {
-    background-image: url("static/experience/cpt.jpg");
+    background-image: url("static/experience/cpt.jpeg");
 }
 
 div.crc {
@@ -364,7 +363,7 @@ div.crc {
 }
 
 div.winners {
-    background-image: url("static/experience/winners.png")
+    background-image: url("static/experience/winners.jpeg")
 }
 
 div.esp {
