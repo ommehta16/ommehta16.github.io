@@ -1,59 +1,36 @@
-const addFiller = () => {
-    const a = document.getElementsByClassName("addfiller");
-
-    for (const item of a) {
-        for (let i = 0; i < 8; i++) item.innerHTML += `
-        <li>
-            <h3>title</h3>
-            <p>
-                FILLER TEXT
-            </p>
-        </li>`;
-    }
-}
-
 let selfieID = 0;
 const flavorBox = document.getElementById("flavortext");
+
+const spook = () => {
+    const spookInner = "he's in your home".split("");
+    let expanded = "";
+    spookInner.forEach((c, i) => {
+        expanded += (c == " " ? " " : `<span class="spooky" style="animation-delay:${Math.sin(i * 0.2)}s;">${c}</span>`);
+    })
+    return "(" + expanded + ")";
+}
+
+const flavorOptions = [
+    `"a motivated junior who's interested in Computer Science"`,
+    `a fellow human!`,
+    `a "studious" student suspiciously standing still`,
+    spook(),
+    `a D1 procrastinator and mediocre achiever`,
+    `a <i>very</i> cooked junior who decided to take 9 APs (😭)`,
+    `(it's <i>so over</i>)`,
+];
 const addFlavorText = () => {
-    const flavorOptions = [
-        `"a motivated junior who's interested in Computer Science"`,
-        `a fellow human!`,
-        `a "studious" student suspiciously standing still`,
-        `(spook)`,
-        `a D1 procrastinator and mediocre achiever`,
-        `a <i>very</i> cooked junior who decided to take 9 APs (😭)`,
-        `(it's <i>so over</i>)`,
-    ];
     const curr = Math.floor(Math.random() * flavorOptions.length);
     if (flavorOptions[curr][0] == "(") document.getElementById("gramer").innerText = "";
     else document.getElementById("gramer").innerText = ",";
 
-    if (flavorOptions[curr] == "(spook)") {
-        spook();
-        return;
-    }
     flavorBox.innerHTML = flavorOptions[curr];
 
     selfieID = Math.floor(Math.random() * 4.0);
     document.getElementById("img-container").className = "self" + (selfieID + 1);
 }
 
-const spook = () => {
-    const spookInner = "he's in your home";
-
-    let expanded = "";
-    for (let i = 0; i < spookInner.length; i++) {
-        const c = spookInner[i];
-        if (c == " ") expanded += " ";
-        else expanded += `<span class="spooky" style="animation-delay:${Math.sin(i * 0.2)}s;">${c}</span>`;
-    }
-    flavorBox.innerHTML = "(" + expanded + ")";
-}
-
-
-addFiller();
 addFlavorText();
-
 
 document.getElementById("img-container").addEventListener("mousedown", () => {
     document.getElementById("img-container").className = "self" + (selfieID + 1) + " blurred";
@@ -71,31 +48,23 @@ const changePFP = () => {
 document.getElementById("img-container").addEventListener("mouseup", changePFP)
 document.getElementById("img-container").addEventListener("mouseleave", changePFP)
 
-document.addEventListener("DOMContentLoaded", () => { setTimeout(() => document.body.classList.add("show"), 100) });
-
+document.addEventListener("DOMContentLoaded", setTimeout.bind(this, () => document.body.classList.add("show"), 50));
 
 const infoBox = document.getElementById("info-box");
-
 
 /** 
  * @param {string} name 
  * @param {HTMLElement} el
 */
-const changeInfoContent = (name, el) => {
+const changeInfoContent = (el) => {
     for (const tmp of ["crc", "cpt", "bsa", "winners", "esp"]) infoBox.classList.remove(tmp);
     const active = el.getAttribute("selected");
-    document.querySelectorAll("li.info-show").forEach(el => el.removeAttribute("selected"))
-    console.log(active);
+    document.querySelectorAll("li.info-show").forEach(el => el.removeAttribute("selected"));
     if (active == null) {
         el.setAttribute("selected", "");
-        infoBox.classList.add(name);
+        infoBox.classList.add(el.getAttribute("name"));
     }
 }
 
 const infoShows = document.getElementsByClassName("info-show");
-for (const el of infoShows) {
-    const name = el.getAttribute("name");
-    el.addEventListener("click", () => {
-        changeInfoContent(name, el);
-    });
-}
+for (const el of infoShows) el.addEventListener("click", changeInfoContent.bind(this, el));
