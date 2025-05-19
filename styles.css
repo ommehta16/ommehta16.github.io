@@ -48,7 +48,8 @@ body {
     opacity: 0;
 }
 
-.show {
+.show,
+#body.show {
     transform: none;
     opacity: 1;
 }
@@ -102,12 +103,13 @@ h1.massive {
 
 h2 {
     font-size: 2.5em;
-    background: radial-gradient(circle, #39c699 30%, #2e9c9e 100%);
+    background: radial-gradient(circle, #39c699 30%, #48c1c3 100%);
     background-clip: text;
 }
 
 h2:hover {
     color: transparent;
+    cursor: pointer;
 }
 
 h3 {
@@ -133,13 +135,20 @@ h3 {
     min-height: calc(min(70vmin, 90vh - 12em));
     width: calc(min(70vmin, 90vh - 12em));
     height: calc(min(70vmin, 90vh - 12em));
-    border-radius: 35vmin;
+    border-radius: 100vh;
     box-shadow: 0px 0px 30px #ffffffaa;
     transition: background-image 1s, all 0.2s;
     filter: blur(var(--img-blur-rad));
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+}
+
+@media screen and (max-height:500px) {
+    #img-container {
+        height: 60vh;
+        width: 60vh;
+    }
 }
 
 .blurred {
@@ -168,7 +177,11 @@ h3 {
 }
 
 .bento-outer {
-    justify-content: center;
+    --cols: 1;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(var(--cols), 1fr);
+
 }
 
 .timeline {
@@ -226,7 +239,7 @@ h3 {
 .bento-outer>li {
     list-style: none;
     padding: 1em;
-    width: calc(min(18em, 100%));
+    /* width: calc(min(18em, 100%)); */
     height: 20em;
     transition: all 0.5s;
     margin: 0;
@@ -369,7 +382,6 @@ div.bsa {
 
 @media screen and (max-width:725px) {
     .bento-outer>li {
-        width: 100%;
         height: unset;
     }
 
