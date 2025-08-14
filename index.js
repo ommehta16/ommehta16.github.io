@@ -58,7 +58,7 @@ const infoBox = document.getElementById("info-box");
  * @param {HTMLElement} el
 */
 function changeInfoContent(el) {
-    for (const tmp of ["crc", "cpt", "bsa", "winners", "esp"]) infoBox.classList.remove(tmp);
+    for (const tmp of ["crc", "cpt", "bsa", "winners", "esp", "pmt"]) infoBox.classList.remove(tmp);
     const active = el.getAttribute("selected");
     document.querySelectorAll("li.info-show").forEach(el => el.removeAttribute("selected"));
     if (active == null) {

@@ -329,6 +329,10 @@ div.bsa {
     background-repeat: no-repeat;
 }
 
+.img.pmt {
+    background-image: url("static/experience/pmt.jpeg");
+}
+
 .img.cpt {
     background-image: url("static/experience/cpt.jpeg");
 }
