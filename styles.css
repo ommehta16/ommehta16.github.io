@@ -131,10 +131,10 @@ h3 {
 }
 
 #img-container {
-    min-width: calc(min(70vmin, 90vh - 12em));
-    min-height: calc(min(70vmin, 90vh - 12em));
-    width: calc(min(70vmin, 90vh - 12em));
-    height: calc(min(70vmin, 90vh - 12em));
+    --img-size: calc(min(70vmin, 90vh - 12em));
+    
+    width: var(--img-size);
+    height: var(--img-size);
     border-radius: 100vh;
     box-shadow: 0px 0px 30px #ffffffaa;
     transition: background-image 1s, all 0.2s;
@@ -142,6 +142,34 @@ h3 {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    overflow:hidden;
+    position: relative;
+
+    transition:all 0.1s;
+}
+
+#img-container img {
+    width:var(--img-size);
+    height:var(--img-size);
+    object-fit: cover;
+    object-position: center;
+    position:absolute;
+    top: var(--img-size);
+    transition: all 0.1s, opacity 0s;
+}
+
+#img-container img.active {
+    top:0;
+}
+
+#img-container img.hidden {
+    opacity: 0;
+    z-index:-100;
+    transition: all 0s; 
+}
+
+#img-container img.prev {
+    top: calc(-1 * var(--img-size))
 }
 
 @media screen and (max-height:500px) {
@@ -153,22 +181,6 @@ h3 {
 
 .blurred {
     --img-blur-rad: 0.5rem;
-}
-
-#img-container.self1 {
-    background-image: url("static/selfie/1.jpeg");
-}
-
-#img-container.self2 {
-    background-image: url("static/selfie/2.jpeg");
-}
-
-#img-container.self3 {
-    background-image: url("static/selfie/3.jpeg");
-}
-
-#img-container.self4 {
-    background-image: url("static/selfie/4.jpeg");
 }
 
 #socials {

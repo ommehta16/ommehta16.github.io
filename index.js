@@ -20,6 +20,34 @@ const flavorOptions = [
     `(it's <i>so over</i>)`,
 ];
 
+const imgContainer = document.querySelector("#img-container");
+
+imgContainer.addEventListener("mousedown", () => {
+    imgContainer.classList.add("blurred");
+});
+
+function changePFP() {
+    const old = imgContainer.children[selfieID];
+    selfieID = (selfieID + 1) % 4;
+    const curr = imgContainer.children[selfieID];
+
+    old.classList.remove("active");
+    old.classList.add("prev");
+    
+    curr.classList.remove("prev");
+    curr.classList.add("active");
+    setTimeout(() => {
+        imgContainer.classList.remove("blurred");
+        old.classList.add("hidden");
+        old.classList.remove("prev");
+        
+        setTimeout(()=>old.classList.remove("hidden"),1);
+    },200);
+}
+
+document.getElementById("img-container").addEventListener("mouseup", changePFP)
+document.getElementById("img-container").addEventListener("mouseleave", changePFP)
+
 function addFlavorText() {
     const curr = Math.floor(Math.random() * flavorOptions.length);
     if (flavorOptions[curr][0] == "(") document.getElementById("gramer").innerText = "";
@@ -28,26 +56,11 @@ function addFlavorText() {
     flavorBox.innerHTML = flavorOptions[curr];
 
     selfieID = Math.floor(Math.random() * 4.0);
-    document.getElementById("img-container").className = "self" + (selfieID + 1);
+    changePFP();
+    // document.getElementById("img-container").className = "self" + (selfieID + 1);
 }
 
 addFlavorText();
-
-document.getElementById("img-container").addEventListener("mousedown", () => {
-    document.getElementById("img-container").className = "self" + (selfieID + 1) + " blurred";
-    selfieID = (selfieID + 1) % 4;
-});
-
-function changePFP() {
-    if (document.getElementById("img-container").className == "self" + (selfieID + 1)) return;
-    document.getElementById("img-container").className = "self" + (selfieID + 1) + " blurred";
-    setTimeout(() => {
-        document.getElementById("img-container").className = "self" + (selfieID + 1);
-    }, 100)
-}
-
-document.getElementById("img-container").addEventListener("mouseup", changePFP)
-document.getElementById("img-container").addEventListener("mouseleave", changePFP)
 
 document.addEventListener("DOMContentLoaded", setTimeout.bind(this, () => document.body.classList.add("show"), 50));
 
