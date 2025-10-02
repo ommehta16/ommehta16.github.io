@@ -46,7 +46,7 @@ function changePFP() {
 }
 
 document.getElementById("img-container").addEventListener("mouseup", changePFP)
-document.getElementById("img-container").addEventListener("mouseleave", changePFP)
+document.getElementById("img-container").addEventListener("mouseleave", ()=>imgContainer.classList.remove("blurred"));
 
 function addFlavorText() {
     const curr = Math.floor(Math.random() * flavorOptions.length);
