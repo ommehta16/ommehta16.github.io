@@ -277,7 +277,7 @@ h3 {
     margin: 0;
 }
 
-.bento-outer>li>div {
+.bento-outer>li>.img {
     flex-grow: 1;
     border-radius: 0.75rem;
     background-position: center;
