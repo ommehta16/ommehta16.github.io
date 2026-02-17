@@ -308,6 +308,16 @@ h3 {
     background-image: url("static/projects/construction.jpg");
 }
 
+/* I hate this system */
+/* but honestly we'll just replace it when i replace this whole site ;) */
+.img.datordle {
+    background-image: url("static/projects/datordle.png");
+}
+
+.img.gravnav {
+    background-image: url("static/projects/gravnav.png");
+}
+
 a {
     color: #5389fd;
     text-decoration: none;
