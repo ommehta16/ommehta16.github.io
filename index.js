@@ -11,15 +11,10 @@ function spook() {
 }
 
 const flavorOptions = [
-    `"a motivated senior who's interested in Computer Science"`,
     `a fellow human!`,
     `I do things, I guess!`,
     `confirmed bigback?`,
-    // `a "studious" student suspiciously standing still`,
     spook(),
-    // `a D1 procrastinator and mediocre achiever`,
-    // `a <i>very</i> cooked junior who decided to take 9 APs (😭)`,
-    // `"senioritis, the person"`,
     `(it's <i>so over</i>)`,
 ];
 
