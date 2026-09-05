@@ -120,7 +120,7 @@ h2 {
     backdrop-filter: blur(1rem);
     mask:linear-gradient(transparent 0%, black 70%);
     -webkit-mask:linear-gradient(transparent 0%, black 70%);
-    height:200%;
+    height: 200%;
     /* background:red; */
     bottom:0;
     left:0;
@@ -134,6 +134,10 @@ h2 {
 #projects .project div.info h3 {
     font-size: 3rem;
     text-align: center;
+}
+
+#projects .project div.info h3.word-hunter {
+    font-size: 2.5rem;
 }
 
 #projects .project div.info p {
