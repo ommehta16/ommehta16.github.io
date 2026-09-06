@@ -1,6 +1,43 @@
 :root {
     font-family: 'Raleway', sans-serif;
     interpolate-size: allow-keywords;
+
+    --bg-base: oklch(0.9712 0.0356 89.44);
+    --bg: oklch(0.9383 0.0439 89.89);
+    --border-color: #ccc;
+    --linkedin-color: oklch(0.5 0.1 250.73);
+    --github-color: oklch(0.4 0 0);
+    
+    --gray-light: #ddd;
+    --gray-med: #bbb;
+    --gray: gray;
+
+    --code-bg: #eee;
+
+    --scrollbar-track-color: oklch(0.9 0.05 89.89);
+    --scrollbar-thumb-color: oklch(0.8 0.05 89.89);
+    --scrollbar-thumb-hover-color: oklch(0.7 0.05 89.89);
+
+}
+
+:root.dark {
+    --bg-base: radial-gradient(circle, #0b1b31 0%, oklch(0.1463 0.0397 248.39) 100%);
+    --bg: #0712210a;
+    --border-color: #333;
+    --linkedin-color: oklch(0.7 0.1 250.73);
+    --github-color: oklch(0.8 0 0);
+    
+    --gray-light: #ddd;
+    --gray-med: #bbb;
+    --gray: gray;
+
+    --scrollbar-track-color: oklch(0.4 0.0397 248.39);
+    --scrollbar-thumb-color: oklch(0.2 0.0397 248.39);
+    --scrollbar-thumb-hover-color: oklch(0.3 0.0397 248.39);
+
+    --code-bg: #222;
+
+    color:#eee;
 }
 
 h1 {
@@ -16,15 +53,16 @@ p.flavortext {
 body {
     margin:0;
     padding:0;
-    background: oklch(0.9712 0.0356 89.44);
+    background: var(--bg-base);
 }
 
 section {
     max-width: 100ch;
-    outline: 1px solid #ccc;
+    border: 1px solid var(--border-color);
+    border-top:none;
     padding:2rem;
     margin-inline:auto;
-    background: oklch(0.9383 0.0439 89.89);
+    background: var(--bg);
     box-sizing: border-box;
 }
 
@@ -53,7 +91,6 @@ section {
 
 #hero div.links a {
     font-size: 2rem;
-    --base-color:oklch(0.5 0.1 250.73);
     color:var(--base-color);
 
     &:hover {
@@ -62,11 +99,11 @@ section {
 }
 
 #hero div.links a.linkedin-link {
-    --base-color:oklch(0.5 0.1 250.73);
+    --base-color:var(--linkedin-color);
 }
 
 #hero div.links a.github-link {
-    --base-color:oklch(0.4 0 0);
+    --base-color: var(--github-color);
 }
 
 #hero div.links a span {
@@ -91,25 +128,25 @@ h2 {
     }
 
     &::-webkit-scrollbar-track {
-        background:oklch(0.9 0.05 89.89);
+        background:var(--scrollbar-track-color);
     }
 
     &::-webkit-scrollbar-thumb {
-        background:oklch(0.8 0.05 89.89);
+        background:var(--scrollbar-thumb-color);
         border-radius: 10px;
         box-sizing: border-box;
         border:1px solid #888;
     }
 
     &::-webkit-scrollbar-thumb:hover {
-        background:oklch(0.7 0.05 89.89);
+        background:var(--scrollbar-thumb-hover-color);
         border:1px solid black;
     }
 }
 
 #projects .project {
     display: block;
-    border:2px solid #bbb;
+    border:2px solid var(--gray-med);
     padding:1rem;
     border-radius:1rem;
     background: oklch(0.93 0.0439 89.89);
@@ -211,7 +248,7 @@ h3 {
 }
 
 #projects .project div.links a {
-    background:#ddd;
+    background:var(--gray-light);
     color: #222;
     display: flex;
     align-items: center;
@@ -223,12 +260,12 @@ h3 {
     width: 1rem;
     height: 1rem;
 
-    border: 2px solid gray;
+    border: 2px solid var(--gray);
     border-radius:0.5rem;
-    box-shadow: 0 2px gray, 0 0 2rem black;
+    box-shadow: 0 2px var(--gray), 0 0 2rem black;
 
     &:hover {
-        background: #bbb;
+        background: var(--gray-med);
     }
 
     position: relative;
@@ -236,7 +273,7 @@ h3 {
 
     &:focus:hover {
         top: 2px;
-        box-shadow: 0 0 gray;
+        box-shadow: 0 0 var(--gray);
     }
 }
 
@@ -269,4 +306,12 @@ h3 {
     animation-duration: 0.7s;
     animation-iteration-count: infinite;
     display: inline-block;
+}
+
+#about code.social {
+    background: var(--code-bg);
+    padding:0.25rem;
+    font-size: 0.75rem;
+    border: 1px solid lightgray;
+    border-radius: 0.25rem;
 }
