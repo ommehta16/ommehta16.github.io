@@ -16,3 +16,32 @@ function hydrateProjects() {
 }
 
 hydrateProjects();
+
+function spook() {
+    const spookInner = "he's in your home".split("");
+    let expanded = "";
+    spookInner.forEach((c, i) => {
+        expanded += (c == " " ? " " : `<span class="spooky" style="animation-delay:${Math.sin(i * 0.2)}s;">${c}</span>`);
+    })
+    return "(" + expanded + ")";
+}
+
+const flavorOptions = [
+    `a fellow human!`,
+    `I do things, I guess!`,
+    spook(),
+    `(it's <i>so over</i>)`,
+];
+
+function addFlavorText() {
+    const curr = Math.floor(Math.random() * flavorOptions.length);
+	console.log(curr);
+	const gramer = document.querySelector(".gramer");
+	const flavorTextContainer = document.querySelector("p.flavortext");
+	if (!gramer || !flavorTextContainer) return;
+	
+	gramer.innerHTML = flavorOptions[curr][0] == "(" ? "" : ",";
+	flavorTextContainer.innerHTML = flavorOptions[curr];
+}
+
+addFlavorText();

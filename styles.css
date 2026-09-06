@@ -6,6 +6,11 @@
 h1 {
     margin: 0;
     font-size: clamp(2rem, 5vw, 5rem);
+    margin-top: 3rem;
+}
+
+p.flavortext {
+    font-size:1.5rem;
 }
 
 body {
@@ -243,4 +248,25 @@ h3 {
 #projects .project:not(:hover) div.links {
     top:-4rem;
     transform:scale(0);
+}
+
+@keyframes spook {
+    0% {
+        transform: translateY(-2px);
+    }
+
+    50% {
+        transform: translateY(2px);
+    }
+
+    100% {
+        transform: translateY(-2px);
+    }
+}
+
+.spooky {
+    animation-name: spook;
+    animation-duration: 0.7s;
+    animation-iteration-count: infinite;
+    display: inline-block;
 }
