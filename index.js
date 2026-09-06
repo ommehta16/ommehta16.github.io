@@ -8,6 +8,9 @@ function hydrateProjects() {
 	const projects = Array.from(projectsContainer.children).filter(el => el.classList.contains("project"));
 	
 	projects.forEach(el => el.addEventListener("click", e => {
+		if (!e.target) return;
+		// @ts-ignore
+		if (Array.from(el.querySelectorAll("div.links, div.links *")).includes(e.target)) return;
 		const url = el.getAttribute("data-open-url");
 		if (!url) return;
 
