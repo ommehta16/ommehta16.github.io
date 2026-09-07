@@ -97,3 +97,18 @@ function updateGrid() {
 
 document.addEventListener("DOMContentLoaded", updateGrid);
 window.addEventListener("resize", updateGrid);
+
+function hydratePFP() {
+	const pfpContainer = document.querySelector("#hero div.img-container");
+	if (!pfpContainer) return;
+
+	for (const imgName of ["1.jpeg", "3.jpeg", "4.jpeg"]) {
+		pfpContainer.innerHTML += `<img src="static/me/${imgName}" />`
+	}
+
+	pfpContainer.addEventListener("click", () => {
+		console.log("You should do something here to like move the pfp ok cool sounds good!");
+	})
+}
+
+// hydratePFP();

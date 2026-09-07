@@ -46,34 +46,10 @@
     color:#eee;
 }
 
-h1 {
-    margin: 0;
-    font-size: clamp(2.5rem, 5vw, 5rem);
-    margin-top: 3rem;
-}
+/* hero section */
 
-p.flavortext {
-    font-size:1.5rem;
-}
-
-body {
-    margin:0;
-    padding:0;
-    background: var(--bg-base);
-}
-
-section {
-    max-width: 100ch;
-    border: 1px solid var(--border-color);
-    border-top:none;
-    padding:2rem;
-    margin-inline:auto;
-    background: var(--bg);
-    box-sizing: border-box;
-}
-
-html.dark section {
-    background: color-mix(in oklab, transparent 50%, var(--bg) 50%)
+section#hero {
+    height: 100vh;
 }
 
 #hero div.img-container {
@@ -81,7 +57,7 @@ html.dark section {
     border-radius:100%;
     height:unset;
     width:50%;
-    max-width: 400px;
+    max-width: 600px;
 
     overflow: hidden;
 }
@@ -96,7 +72,6 @@ html.dark section {
     /* border-radius:100%; */
     height:unset;
     width:100%;
-    max-width: 400px;
 }
 
 #hero {
@@ -105,6 +80,27 @@ html.dark section {
     align-items: center;
     justify-content: space-around;
     padding:3rem;
+    gap: 3rem;
+}
+
+#hero .name {
+    color: oklch(0.7367 0.153 157.56);
+}
+
+html:not(.dark) #hero .name {
+    color: oklch(0.65 0.17 250);
+}
+
+#hero h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    margin-top: 3rem;
+    font-weight: 750;
+}
+
+#hero p.flavortext {
+    font-size:clamp(1rem,3vw,1.5rem);
+    margin-top: 0.5rem;
 }
 
 #hero div.links {
@@ -132,6 +128,43 @@ html.dark section {
 
 #hero div.links a span {
     display: none;
+}
+
+@media screen and (max-width: 600px) {
+    #hero {
+        flex-direction: column-reverse;
+        gap: 0;
+    }
+
+    #hero h1 {
+        font-size: 4rem;
+        margin-top: 0;
+    }
+
+    #hero div.img-container {
+        height: 50%;
+        width: unset;
+    }
+}
+
+body {
+    margin:0;
+    padding:0;
+    background: var(--bg-base);
+}
+
+section {
+    max-width: 100ch;
+    border: 1px solid var(--border-color);
+    border-top:none;
+    padding:2rem;
+    margin-inline:auto;
+    background: var(--bg);
+    box-sizing: border-box;
+}
+
+html.dark section {
+    background: color-mix(in oklab, transparent 50%, var(--bg) 50%)
 }
 
 h2 {
@@ -400,7 +433,7 @@ h3 {
     background: var(--code-bg);
     padding:0.25rem;
     font-size: 0.75rem;
-    border: 0.5px solid lightgray;
+    border: 0.5px solid #ccca;
     border-radius: 0.25rem;
 }
 
