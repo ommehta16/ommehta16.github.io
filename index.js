@@ -1,5 +1,24 @@
-let selfieID = 0;
-const flavorBox = document.getElementById("flavortext");
+// @ts-check
+
+function hydrateProjects() {
+	/** @type {HTMLDivElement|null} */
+	const projectsContainer = document.querySelector("section#projects div.projects-list");
+	if (!projectsContainer) return;
+
+	const projects = Array.from(projectsContainer.children).filter(el => el.classList.contains("project"));
+	
+	projects.forEach(el => el.addEventListener("click", e => {
+		if (!e.target) return;
+		// @ts-ignore
+		if (Array.from(el.querySelectorAll("div.links, div.links *")).includes(e.target)) return;
+		const url = el.getAttribute("data-open-url");
+		if (!url) return;
+
+		window.open(url,'_blank')?.focus();
+	}))
+}
+
+hydrateProjects();
 
 function spook() {
     const spookInner = "he's in your home".split("");
@@ -13,105 +32,83 @@ function spook() {
 const flavorOptions = [
     `a fellow human!`,
     `I do things, I guess!`,
-    `confirmed bigback?`,
     spook(),
     `(it's <i>so over</i>)`,
 ];
 
-const imgContainer = document.querySelector("#img-container");
-
-imgContainer.addEventListener("mousedown", () => {
-    imgContainer.classList.add("blurred");
-});
-
-function changePFP() {
-    const old = imgContainer.children[selfieID];
-    selfieID = (selfieID + 1) % 4;
-    const curr = imgContainer.children[selfieID];
-
-    old.classList.remove("active");
-    old.classList.add("prev");
-    
-    curr.classList.remove("prev");
-    curr.classList.add("active");
-    setTimeout(() => {
-        imgContainer.classList.remove("blurred");
-        old.classList.add("hidden");
-        old.classList.remove("prev");
-        
-        setTimeout(()=>old.classList.remove("hidden"),1);
-    },200);
-}
-
-document.getElementById("img-container").addEventListener("mouseup", changePFP)
-document.getElementById("img-container").addEventListener("mouseleave", ()=>imgContainer.classList.remove("blurred"));
-
 function addFlavorText() {
     const curr = Math.floor(Math.random() * flavorOptions.length);
-    if (flavorOptions[curr][0] == "(") document.getElementById("gramer").innerText = "";
-    else document.getElementById("gramer").innerText = ",";
-
-    flavorBox.innerHTML = flavorOptions[curr];
-
-    selfieID = Math.floor(Math.random() * 4.0);
-    changePFP();
-    // document.getElementById("img-container").className = "self" + (selfieID + 1);
+	console.log(curr);
+	const gramer = document.querySelector(".gramer");
+	const flavorTextContainer = document.querySelector("p.flavortext");
+	if (!gramer || !flavorTextContainer) return;
+	
+	gramer.innerHTML = flavorOptions[curr][0] == "(" ? "" : ",";
+	flavorTextContainer.innerHTML = flavorOptions[curr];
 }
 
 addFlavorText();
 
-document.addEventListener("DOMContentLoaded", setTimeout.bind(this, () => document.body.classList.add("show"), 50));
+function hydrateSwitchModeButton() {
+	const switchModeButton = document.querySelector("button.switch-color-mode");
+	if (!switchModeButton) return;
 
-const infoBox = document.getElementById("info-box");
-
-/** 
- * @param {string} name 
- * @param {HTMLElement} el
-*/
-function changeInfoContent(el) {
-    for (const tmp of ["crc", "cpt", "bsa", "winners", "esp", "pmt"]) infoBox.classList.remove(tmp);
-    const active = el.getAttribute("selected");
-    document.querySelectorAll("li.info-show").forEach(el => el.removeAttribute("selected"));
-    if (active == null) {
-        el.setAttribute("selected", "");
-        infoBox.classList.add(el.getAttribute("name"));
-    }
+	switchModeButton.addEventListener("click", () => {
+		document.documentElement.classList.toggle("dark");
+	})
 }
 
-const infoShows = document.getElementsByClassName("info-show");
-for (const el of infoShows) el.addEventListener("click", changeInfoContent.bind(this, el));
+hydrateSwitchModeButton();
 
-const updateGrid = () => {
-    const container = document.querySelector(".bento-outer");
-    if (!container) return;
-    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+function hydrateSeeMoreProjectsButton() {
+	const seeMoreButton = document.querySelector('.expand-projects');
+	if (!seeMoreButton) return;
+	seeMoreButton.addEventListener("click", () => {
+		const projectsList = document.querySelector("div.projects-list");
+		if (!projectsList) return;
 
-    const width = container.clientWidth;
+		projectsList.classList.toggle("expanded");
+		const projectsText = seeMoreButton.querySelector("i:not(.arrow)");
+		if (!projectsText) return;
 
-    // 18 * rem * i + rem * (i - 1) > width
-    // 18 * rem * i + rem * i - rem > width
-    // 19 * rem * i > width + 1*rem
-    const numCols = Math.trunc((width + rem) / (19 * rem));
-    container.style.setProperty("--cols", numCols);
+		projectsText.innerHTML = projectsList.classList.contains("expanded") ? "See less projects" : "See more projects";
+
+		updateGrid();
+	});
+}
+
+hydrateSeeMoreProjectsButton();
+
+function updateGrid() {
+	/** @type {HTMLElement|null} */
+	const container = document.querySelector(".projects-list");
+	if (!container) return;
+
+	const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+	const width = container.clientWidth;
+	console.log(width, rem);
+	let minBoxWidth = 270;
+	if (width < 600) minBoxWidth = 220;
+	const numCols = Math.trunc((width + rem) / (minBoxWidth + rem));
+	// min width is 250
+	// gap is 1rem
+	container.style.setProperty("--cols", `${numCols}`);
 }
 
 document.addEventListener("DOMContentLoaded", updateGrid);
 window.addEventListener("resize", updateGrid);
 
-document.addEventListener("DOMContentLoaded", setTimeout.bind(this, () => {
-    if (!window.location.hash) return;
-    document.querySelector(window.location.hash).scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-    });
-}, 500));
+function hydratePFP() {
+	const pfpContainer = document.querySelector("#hero div.img-container");
+	if (!pfpContainer) return;
 
-document.querySelectorAll("h2").forEach(el => {
-    el.addEventListener("click", () => {
-        el.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-        });
-        setTimeout(() => { window.location.hash = el.id; }, 10);
-    });
-});
+	for (const imgName of ["1.jpeg", "3.jpeg", "4.jpeg"]) {
+		pfpContainer.innerHTML += `<img src="static/me/${imgName}" />`
+	}
+
+	pfpContainer.addEventListener("click", () => {
+		console.log("You should do something here to like move the pfp ok cool sounds good!");
+	})
+}
+
+// hydratePFP();
