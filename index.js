@@ -48,3 +48,31 @@ function addFlavorText() {
 }
 
 addFlavorText();
+
+function hydrateSwitchModeButton() {
+	const switchModeButton = document.querySelector("button.switch-color-mode");
+	if (!switchModeButton) return;
+
+	switchModeButton.addEventListener("click", () => {
+		document.documentElement.classList.toggle("dark");
+	})
+}
+
+hydrateSwitchModeButton();
+
+function hydrateSeeMoreProjectsButton() {
+	const seeMoreButton = document.querySelector('.expand-projects');
+	if (!seeMoreButton) return;
+	seeMoreButton.addEventListener("click", () => {
+		const projectsList = document.querySelector("div.projects-list");
+		if (!projectsList) return;
+
+		projectsList.classList.toggle("expanded");
+		const projectsText = seeMoreButton.querySelector("i:not(.arrow)");
+		if (!projectsText) return;
+
+		projectsText.innerHTML = projectsList.classList.contains("expanded") ? "See less projects" : "See more projects";
+	});
+}
+
+hydrateSeeMoreProjectsButton();
