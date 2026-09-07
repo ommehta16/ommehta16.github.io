@@ -14,11 +14,12 @@
 
     --dark: #222;
 
-    --code-bg: #eee;
+    --code-bg: #eaeaea;
 
     --scrollbar-track-color: oklch(0.9 0.05 89.89);
     --scrollbar-thumb-color: oklch(0.8 0.05 89.89);
     --scrollbar-thumb-hover-color: oklch(0.7 0.05 89.89);
+    --scrollbar-thumb-border-color: #888;
 
 }
 
@@ -29,15 +30,16 @@
     --linkedin-color: oklch(0.7 0.1 250.73);
     --github-color: oklch(0.8 0 0);
     
-    --gray-light: #ddd;
+    --gray-light: #ccc;
     --gray-med: #bbb;
     --gray: gray;
 
     --dark: #ddd;
 
-    --scrollbar-track-color: oklch(0.4 0.0397 248.39);
+    --scrollbar-track-color: transparent;
     --scrollbar-thumb-color: oklch(0.2 0.0397 248.39);
     --scrollbar-thumb-hover-color: oklch(0.3 0.0397 248.39);
+    --scrollbar-thumb-border-color: oklch(0.5 0.0397 248.39);
 
     --code-bg: #222;
 
@@ -135,6 +137,14 @@ html.dark section {
 h2 {
     font-family: 'IBM Plex Mono', 'Courier New', Courier, monospace;
     font-size: 3rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background: var(--code-bg);
+    display: inline-block;
+}
+
+html:not(.dark) h2 {
+    border: 0.5px solid gray;
 }
 
 #projects .projects-list {
@@ -157,7 +167,7 @@ h2 {
         background:var(--scrollbar-thumb-color);
         border-radius: 10px;
         box-sizing: border-box;
-        border:1px solid #888;
+        border:1px solid var(--scrollbar-thumb-border-color);
     }
 
     &::-webkit-scrollbar-thumb:hover {
@@ -168,8 +178,10 @@ h2 {
 
 #projects .projects-list.expanded {
     overflow: visible;
-
-    flex-wrap: wrap;
+    --cols: 1;
+    display: grid;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    /* flex-wrap: wrap; */
 
     height: auto;
     max-height: none;
@@ -191,6 +203,10 @@ h2 {
     margin-bottom:.25rem;
 
     overflow: hidden;
+}
+
+#projects .projects-list.expanded .project, #projects .projects-list.expanded .expand-projects {
+    min-width: 150px;
 }
 
 #projects .projects-list:not(.expanded) .project.min {
@@ -384,7 +400,7 @@ h3 {
     background: var(--code-bg);
     padding:0.25rem;
     font-size: 0.75rem;
-    border: 1px solid lightgray;
+    border: 0.5px solid lightgray;
     border-radius: 0.25rem;
 }
 
@@ -446,4 +462,8 @@ footer a {
 
 footer a span {
     display: none;
+}
+
+#about p {
+    font-size: 1.25rem;
 }

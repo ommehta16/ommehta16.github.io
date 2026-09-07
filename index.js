@@ -72,7 +72,28 @@ function hydrateSeeMoreProjectsButton() {
 		if (!projectsText) return;
 
 		projectsText.innerHTML = projectsList.classList.contains("expanded") ? "See less projects" : "See more projects";
+
+		updateGrid();
 	});
 }
 
 hydrateSeeMoreProjectsButton();
+
+function updateGrid() {
+	/** @type {HTMLElement|null} */
+	const container = document.querySelector(".projects-list");
+	if (!container) return;
+
+	const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+	const width = container.clientWidth;
+	console.log(width, rem);
+	let minBoxWidth = 270;
+	if (width < 600) minBoxWidth = 220;
+	const numCols = Math.trunc((width + rem) / (minBoxWidth + rem));
+	// min width is 250
+	// gap is 1rem
+	container.style.setProperty("--cols", `${numCols}`);
+}
+
+document.addEventListener("DOMContentLoaded", updateGrid);
+window.addEventListener("resize", updateGrid);
